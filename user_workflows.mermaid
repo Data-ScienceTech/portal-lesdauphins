@@ -1,0 +1,188 @@
+graph TB
+    subgraph "Owner Workflows"
+        A1[Owner Login] --> A2{First Login?}
+        A2 -->|Yes| A3[Complete Profile]
+        A2 -->|No| A4[Owner Dashboard]
+        A3 --> A4
+        
+        A4 --> A5[View Invoices]
+        A4 --> A6[Submit Service Request]
+        A4 --> A7[View Documents]
+        A4 --> A8[Update Profile]
+        A4 --> A9[View Insurance]
+        
+        A5 --> A10[Make Payment]
+        A10 --> A11[Payment Confirmation]
+        
+        A6 --> A12[Upload Photos]
+        A12 --> A13[Request Submitted]
+        A13 --> A14[Track Progress]
+        
+        A7 --> A15[Download Document]
+        
+        A9 --> A16[Upload Insurance Doc]
+        A16 --> A17[Set Reminder]
+    end
+    
+    subgraph "Administrator Workflows"
+        B1[Admin Login] --> B2[Admin Dashboard]
+        
+        B2 --> B3[Manage Owners]
+        B2 --> B4[Process Service Requests]
+        B2 --> B5[Generate Invoices]
+        B2 --> B6[Manage Documents]
+        B2 --> B7[Handle Communications]
+        
+        B3 --> B8[Add/Edit Owner]
+        B8 --> B9[Assign Unit]
+        B9 --> B10[Set Quote-part]
+        
+        B4 --> B11[Assign to Employee]
+        B11 --> B12[Track Completion]
+        B12 --> B13[Record Cost]
+        
+        B5 --> B14[Batch Invoice Generation]
+        B14 --> B15[Review & Send]
+        B15 --> B16[Track Payments]
+        
+        B6 --> B17[Upload Document]
+        B17 --> B18[Set Visibility]
+        B18 --> B19[Categorize & Tag]
+        
+        B7 --> B20[Create Announcement]
+        B20 --> B21[Select Recipients]
+        B21 --> B22[Send Communication]
+    end
+    
+    subgraph "Board Member Workflows"
+        C1[Board Login] --> C2[Board Dashboard]
+        
+        C2 --> C3[Review Financials]
+        C2 --> C4[Approve Expenses]
+        C2 --> C5[Manage Projects FDP]
+        C2 --> C6[Review Claims FAA]
+        
+        C3 --> C7[View Budget vs Actual]
+        C7 --> C8[Generate Reports]
+        
+        C4 --> C9[Review Pending]
+        C9 --> C10{Approve?}
+        C10 -->|Yes| C11[Approve Payment]
+        C10 -->|No| C12[Reject with Note]
+        
+        C5 --> C13[Review Project Status]
+        C13 --> C14[Evaluate Bids]
+        C14 --> C15[Select Contractor]
+        
+        C6 --> C16[Review Claim Details]
+        C16 --> C17[Assign Responsibility]
+    end
+    
+    subgraph "Employee Workflows"
+        D1[Employee Login] --> D2[Employee Dashboard]
+        
+        D2 --> D3[View Assigned Tasks]
+        D2 --> D4[Maintenance Schedule]
+        
+        D3 --> D5[Accept Task]
+        D5 --> D6[Update Status]
+        D6 --> D7[Upload Photos]
+        D7 --> D8[Record Time/Cost]
+        D8 --> D9[Mark Complete]
+        
+        D4 --> D10[View Calendar]
+        D10 --> D11[Complete Maintenance]
+        D11 --> D12[Log Details]
+    end
+    
+    subgraph "Service Request Flow"
+        E1[Request Created] --> E2[Auto-Assign Priority]
+        E2 --> E3[Notify Admin]
+        E3 --> E4[Admin Reviews]
+        E4 --> E5[Assign to Employee]
+        E5 --> E6[Employee Notified]
+        E6 --> E7[Work in Progress]
+        E7 --> E8[Owner Receives Updates]
+        E8 --> E9[Work Completed]
+        E9 --> E10[Owner Approval]
+        E10 --> E11[Cost Allocated to Fund]
+        E11 --> E12[Request Closed]
+    end
+    
+    subgraph "Claim Processing Flow FAA"
+        F1[Incident Occurs] --> F2[Claim Created]
+        F2 --> F3[Photos & Evidence]
+        F3 --> F4[Identify Responsible Unit]
+        F4 --> F5[Identify Affected Units]
+        F5 --> F6[Notify Parties]
+        F6 --> F7[Investigation]
+        F7 --> F8[Get Quotes]
+        F8 --> F9[Board Approval]
+        F9 --> F10[Repair Work]
+        F10 --> F11[Document Costs]
+        F11 --> F12[Insurance Communication]
+        F12 --> F13[Final Settlement]
+        F13 --> F14[Claim Closed]
+    end
+    
+    subgraph "Invoice Generation & Payment"
+        G1[Monthly Cycle] --> G2[Calculate Quote-parts]
+        G2 --> G3[Generate Invoices]
+        G3 --> G4[Apply Fund Allocations]
+        G4 --> G5[Send to Owners]
+        G5 --> G6{Payment Type}
+        G6 -->|Pre-authorized| G7[Auto-charge]
+        G6 -->|Manual| G8[Wait for Payment]
+        G7 --> G9[Record Payment]
+        G8 --> G10{Paid on Time?}
+        G10 -->|Yes| G9
+        G10 -->|No| G11[Apply Late Fee]
+        G11 --> G12[Send Reminder]
+        G12 --> G13{Still Unpaid?}
+        G13 -->|Yes| G14[Escalate to Board]
+        G13 -->|No| G9
+    end
+    
+    subgraph "Project Management FDP"
+        H1[Quinquennial Report] --> H2[Identify Projects]
+        H2 --> H3[Budget Planning]
+        H3 --> H4[Board Approval]
+        H4 --> H5[Create RFP]
+        H5 --> H6[Receive Bids]
+        H6 --> H7[Evaluate Bids]
+        H7 --> H8[Board Selection]
+        H8 --> H9[Award Contract]
+        H9 --> H10[Project Kickoff]
+        H10 --> H11[Track Progress]
+        H11 --> H12[Process Payments]
+        H12 --> H13[Quality Inspections]
+        H13 --> H14[Project Completion]
+        H14 --> H15[Final Documentation]
+        H15 --> H16[Archive]
+    end
+    
+    subgraph "AGA Meeting Flow"
+        I1[Schedule AGA] --> I2[Prepare Agenda]
+        I2 --> I3[Send Notifications 30 days]
+        I3 --> I4[Prepare Documents]
+        I4 --> I5[Send Reminder 1 week]
+        I5 --> I6[Meeting Day]
+        I6 --> I7{Attendance Type}
+        I7 -->|In-person| I8[Check-in]
+        I7 -->|Virtual| I9[Join Video]
+        I8 --> I10[Meeting Starts]
+        I9 --> I10
+        I10 --> I11[Present Motions]
+        I11 --> I12[Electronic Voting]
+        I12 --> I13[Record Results]
+        I13 --> I14[Q&A Session]
+        I14 --> I15[Close Meeting]
+        I15 --> I16[Prepare Minutes]
+        I16 --> I17[Upload Recording]
+        I17 --> I18[Archive]
+    end
+    
+    style A4 fill:#e1f5ff
+    style B2 fill:#fff4e6
+    style C2 fill:#f3e5f5
+    style D2 fill:#e8f5e9
